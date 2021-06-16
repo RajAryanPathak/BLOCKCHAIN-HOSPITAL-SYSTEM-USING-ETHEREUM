@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Web 3 Demo</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="abi.js"></script>
+    <script src="doctorfun.js"></script>
+    
+    <script src='node_modules/web3/dist/web3.min.js'></script>
+    <link rel="stylesheet" href="nav.css">
+
+    <style>
+        body{
+            background-color: rgba(0,255,0,0.7);
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li><a class="active" href="PatientList.html">Patients</a></li>
+        <li><a href="hospital.html">Hospital</a></li>
+        <li><a href="/">Patient Registration</a></li>
+      </ul>
+
+    <div style = " margin: 5%; justify-content: space-around;display: flex"class="w3-container"  id="w3-container">
+
+    </div>
+
+
+
+<div class="w3-container w3-win8-cyan">
+  <h2>REGISTER A DOCTOR</h2>
+  
+  <div class="w3-card-4">
+    <div class="w3-container w3-red">
+      <h2></h2>
+    </div>
+
+    <form class="w3-container">
+      <p>     
+      <input id ="age" class="w3-input" type="num">
+      <label>AGE</label></p>
+      <p>
+      <input id="fname" class="w3-input" type="text">
+      <label>First Name</label></p>
+      <p>
+        <input id="lname" class="w3-input" type="text">
+        <label>Last Name</label></p>
+    
+       
+      
+      
+    </form>
+  </div>
+  <div><button onclick="regasdoctor();" class="w3-button w3-black w3-round-large">Click Here to reg  a Doctor</button></div>
+</div>
+
+</body>
+</html>
+
+
+    
+    Status: <span id="status">Loading...</span>
+
+   
+
+
+
+    
+    
+
+
+
+    <script type="text/javascript">4
+
+    
+        // run using command http-server
+        //How to Connect Web3.js to MetaMask in 2021
+        async function loadWeb3() {
+        if (window.ethereum) {
+            console.log(5);
+            window.web3 = new Web3(window.ethereum);
+            window.ethereum.enable();
+            // this will load our network
+        }
+    }
+    // load contraction
+    async function loadContract() {
+        return await new window.web3.eth.Contract(
+            abi,baddress);
+    }
+    
+    
+    
+    async function getCurrentAccount() {
+        const accounts = await window.web3.eth.getAccounts();
+        return accounts[0];
+    }
+    
+    
+    // load  function
+    async function load() {
+        await loadWeb3();
+        
+        window.contract = await loadContract();
+        updateStatus('Ready!');
+       loaddoc();//function to be call
+    }
+    // update status function
+    function updateStatus(status) {
+        const statusEl = document.getElementById('status');
+        statusEl.innerHTML = status;
+        console.log(status);
+    }
+    // calling load contract function
+    
+    
+    load();
+        </script>
+    
+</body>
+</html>

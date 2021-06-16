@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Web 3 Demo</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="doctor.css">
+    <script src="permission.js"></script>
+    <link rel="stylesheet" href="nav.css">
+
+    
+    <script src='node_modules/web3/dist/web3.min.js'></script>
+</head>
+
+<body>
+    <ul>
+        <li><a class="active" href="PatientList.html">Patients</a></li>
+        <li><a href="hospital.html">Hospital</a></li>
+        <li><a href="/">Patient Registration</a></li>
+      </ul>
+      <br>
+<div class="card">
+  <img src="https://www.w3schools.com/w3images/team2.jpg" alt="John" style="width:100%">
+  <h1 id="h1name"></h1>
+  <p class="title">Heart & Kidney, Speacialist</p>
+  <p>Harvard University</p>
+  <div style="margin: 24px 0;">
+    <a href="#"><i class="fa fa-dribbble"></i></a> 
+    <a href="#"><i class="fa fa-twitter"></i></a>  
+    <a href="#"><i class="fa fa-linkedin"></i></a>  
+    <a href="#"><i class="fa fa-facebook"></i></a> 
+  </div>
+  <p><button>TRUSTED & CERTIFIED</button></p>
+  
+    <p>      
+     <button onclick="setPermToRead()" class="w3-btn w3-blue">Assign Permission To Read</button></p>
+    <p>      
+      
+    <button onclick="setPermToWrite();" class="w3-btn w3-blue">Assign Permission To Write</button></p>
+
+  
+  Status: <span id="status">Loading...</span>
+
+   
+
+
+
+    
+    
+
+</div>
+
+   
+
+
+
+
+    <script src="abi.js"></script>
+    <script src="patientfun.js"></script>
+    <script src="doctorfun.js"></script>
+    
+
+    
+
+    <script type="text/javascript">
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+var c = url.searchParams.get("name");
+console.log(c);
+document.getElementById("h1name").innerHTML=c;
+
+    // run using command http-server
+    //How to Connect Web3.js to MetaMask in 2021
+    async function loadWeb3() {
+        if (window.ethereum) {
+            window.web3 = new Web3(window.ethereum);
+            window.ethereum.enable();
+            // this will load our network
+        }
+    }
+// load contraction
+async function loadContract() {
+    return await new window.web3.eth.Contract(
+        abi,baddress);
+}
+
+
+
+async function getCurrentAccount() {
+    const accounts = await window.web3.eth.getAccounts();
+    return accounts[0];
+}
+
+
+
+// load  function
+async function load() {
+    await loadWeb3();
+    window.contract = await loadContract();
+    updateStatus('');
+}
+// update status function
+function updateStatus(status) {
+    const statusEl = document.getElementById('status');
+    statusEl.innerHTML = status;
+    console.log(status);
+}
+// calling load contract function
+load();
+    </script>
+    
+</body>
+</html>

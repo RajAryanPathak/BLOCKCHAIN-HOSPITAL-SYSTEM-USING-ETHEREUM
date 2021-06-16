@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Web 3 Demo</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="permission.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <script src="abi.js"></script>
+   
+    
+    <script src='node_modules/web3/dist/web3.min.js'></script>
+</head>
+
+<body>
+
+    <br >
+
+        <p>Give Doctor Permission to view your record</p>
+        Your Private Key<input id = "pataddr"type="text"><br>
+        Docotr Address<input id = "docaddr"type="text"><br>
+        <button onclick="setPermToRead()">Click here to set permission</button>
+        <h1>----------</h1>
+
+        <p>Give Doctor Permission to write your record</p>
+        Your Private Key<input id = "pataddw"type="text"><br>
+        Docotr Address<input id = "docaddw"type="text"><br>
+        <button onclick="setPermToWrite();">Click here to set permission</button>
+
+
+    <br /><br />
+    Status: <span id="status">Loading...</span>
+
+
+
+
+    
+    
+
+   
+
+    <script type="text/javascript">
+    // run using command http-server
+    //How to Connect Web3.js to MetaMask in 2021
+    async function loadWeb3() {
+    if (window.ethereum) {
+        window.web3 = new Web3(window.ethereum);
+        window.ethereum.enable();
+        // this will load our network
+    }
+}
+
+// load contraction
+async function loadContract() {
+
+    return await new window.web3.eth.Contract(
+        abi,baddress);
+}
+
+
+
+async function getCurrentAccount() {
+    const accounts = await window.web3.eth.getAccounts();
+    return accounts[0];
+}
+
+
+// load  function
+async function load() {
+    await loadWeb3();
+    window.contract = await loadContract();
+    updateStatus('Ready!');
+}
+// update status function
+function updateStatus(status) {
+    const statusEl = document.getElementById('status');
+    statusEl.innerHTML = status;
+    console.log(status);
+}
+// calling load contract function
+
+
+load();
+    </script>
+    
+</body>
+</html>

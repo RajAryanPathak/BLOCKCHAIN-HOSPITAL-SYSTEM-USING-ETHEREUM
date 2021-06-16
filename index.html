@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Web 3 Demo</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <script src="abi.js"></script>
+    <script src="patientfun.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="nav.css">
+    <script src='node_modules/web3/dist/web3.min.js'></script>
+</head>
+
+<body>
+  <ul>
+    <li><a class="active" href="PatientList.html">Patients</a></li>
+    <li><a href="hospital.html">Hospital</a></li>
+    <li><a href="">Patient Registration</a></li>
+  </ul>
+    
+<div  class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
+    <h2 class="w3-center">Register Yourself As A Patient</h2>
+     
+    <div class="w3-row w3-section">
+      <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+        <div class="w3-rest">
+          <input  id="patfname" class="w3-input w3-border" name="first" type="text" placeholder="First Name">
+        </div>
+    </div>
+    
+    <div class="w3-row w3-section">
+      <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+        <div class="w3-rest">
+          <input id ="patlname" class="w3-input w3-border" name="last" type="text" placeholder="Last Name">
+        </div>
+    </div>
+    
+    <div class="w3-row w3-section">
+      <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-child"></i></div>
+        <div class="w3-rest">
+          <input  id="patage" class="w3-input w3-border" name="age" type="num" placeholder="Age">
+        </div>
+    </div>
+    
+  
+
+    <button onclick="abcd();" class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding">Register</button>
+    
+</div>
+    
+
+
+   
+    Status: <span id="status">Loading...</span>
+
+
+
+    
+    
+
+
+    <script type="text/javascript">
+    // run using command http-server
+    //How to Connect Web3.js to MetaMask in 2021
+    async function loadWeb3() {
+    if (window.ethereum) {
+        window.web3 = new Web3(window.ethereum);
+        window.ethereum.enable();
+        // this will load our network
+    }
+}
+// load contraction
+async function loadContract() {
+    return await new window.web3.eth.Contract(
+        abi,baddress);
+}
+
+
+
+async function getCurrentAccount() {
+    const accounts = await window.web3.eth.getAccounts();
+    return accounts[0];
+}
+
+
+// load  function
+async function load() {
+    await loadWeb3();
+    window.contract = await loadContract();
+    updateStatus('Ready!');
+}
+// update status function
+function updateStatus(status) {
+    const statusEl = document.getElementById('status');
+    statusEl.innerHTML = status;
+    console.log(status);
+}
+// calling load contract function
+
+
+load();
+    </script>
+    
+</body>
+</html>
